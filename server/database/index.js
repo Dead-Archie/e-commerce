@@ -1,3 +1,4 @@
-import dbConnect from "./connection.js";
+import databaseConnection from './connection.js';
+import CustomerRepository from './repository/customer-repository.js'
 
-export const databaseConnection = dbConnect; 
+export { databaseConnection, CustomerRepository };

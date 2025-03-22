@@ -1,10 +1,12 @@
 import express from "express";
 import cors from 'cors';
+import Customer from "./api/customer.js";
 
 const expressApp = (app) =>{
     app.use(cors());
     app.use(express.json());
 
+    Customer(app)
     
 
     app.get('/', (request, response) => {
