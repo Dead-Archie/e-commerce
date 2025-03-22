@@ -1,21 +1,23 @@
 import express from "express";
-import mongoose from "mongoose";
 import dotenv from 'dotenv';
+import {databaseConnection} from './database/index.js';
+import expressApp from './express-app.js';
+
 
 dotenv.config();
 
-const app = express();
 
+  const app = express();
 
-
-mongoose
-  .connect(process.env.DB_URL)
-  .then(() => {
-    console.log('App connected to database');
-    app.listen(2020, ()=>{
-        console.log("server is connected");
-    })
+  databaseConnection();
+  
+  expressApp(app);
+  
+  
+  app.listen(process.env.PORT, ()=>{
+    console.log("server is connected "+ process.env.PORT);
   })
-  .catch((error) => {
-    console.log(error);
-  });
+  .on('error',(error)=>{
+      console.log("Error in connection ", error);
+  })
+
